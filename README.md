@@ -1,6 +1,6 @@
 ## SRA DOWNLOADER
-## 2022-05-16
-## Tulsi Patel
+Date: 2022-05-16
+Author: Tulsi Patel
 
 PURPOSE: Download files from Sequence Read Archive (SRA) using list of accession numbers and extract to fastq/other depending on format.
 
