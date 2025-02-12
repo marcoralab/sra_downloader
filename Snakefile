@@ -19,7 +19,7 @@ rule main:
 
 
 rule fetch_accession:
-    output: temp("{dataset}/{accession}/{accession}.sra")
+    output: temp("{accession}/{accession}.sra")
     threads: 4
     resources:
         time_min = 180,
@@ -35,7 +35,7 @@ rule fetch_accession:
         """
 
 rule sra_to_fastq:
-    input: "{dataset}/{accession}/{accession}.sra"
+    input: "{accession}/{accession}.sra"
     output: expand("{{dataset}}/{{accession}}_{read}.fastq", read=[1,2])
     threads: 2
     resources:
