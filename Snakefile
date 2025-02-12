@@ -22,7 +22,7 @@ rule fetch_accession:
     output: temp("{accession}/{accession}.sra")
     threads: 4
     resources:
-        time_min = 180,
+        time_min = 300,
         mem_mb = 16000
     container: "docker://befh/sra-tools:3.0.0"
     shell:
@@ -39,10 +39,22 @@ rule sra_to_fastq:
     output: expand("{{dataset}}/{{accession}}_{read}.fastq", read=[1,2])
     threads: 2
     resources:
-        time_min = 180,
+        time_min = 300,
         mem_mb = 16000
     container: "docker://befh/sra-tools:3.0.0"
     shell:
         """
         fasterq-dump {input} -e 20
+        """
+
+rule move_files:
+    input: "{accession}_{read}.fastq"
+    output: "{dataset}/{accession}_{read}.fastq"
+    threads: 1
+    resources:
+        time_min = 30,
+        mem_mb = 2000
+    shell:
+        """
+        mv {input} {output}
         """
