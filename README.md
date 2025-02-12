@@ -6,6 +6,7 @@ Author: Tulsi Patel
 Download files from Sequence Read Archive (SRA) using list of accession numbers and extract to fastq/other depending on format.   
 
 ## CONFIG PARAMS
+
 SRALIST = "input/SraAccList.txt"
 DATASET = "dataset_20250212"
 
