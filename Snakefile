@@ -1,9 +1,10 @@
 import os
 import glob
 
-sralist = "/sc/arion/projects/load/users/patelt16/data/scripts/sra_download/SraAccList.txt"
+SRALIST = "input/SraAccList.txt"
+DATASET = "test_20250212"
 
-with open(sralist, "r") as srafile:
+with open(SRALIST, "r") as srafile:
     ACCESSION = [x.strip() for x in srafile]
 
 # snakemake --dag | dot -Tpdf > output/dag.pdf
@@ -14,16 +15,16 @@ localrules: main
 
 rule main:
     input:
-        expand("output/{accession}_{read}.fastq", accession=ACCESSION, read=[1,2])
+        expand("{dataset}/{accession}_{read}.fastq", dataset = DATASET, accession = ACCESSION, read=[1,2])
 
 
 rule fetch_accession:
-    output: temp("output/{accession}/{accession}.sra")
+    output: temp("{dataset}/{accession}/{accession}.sra")
     threads: 4
     resources:
         time_min = 180,
         mem_mb = 16000
-    container: "docker://ncbi/sra-tools:3.0.0"
+    container: "docker://befh/sra-tools:3.0.0"
     shell:
         """
         export http_proxy=http://172.28.7.1:3128
@@ -34,13 +35,13 @@ rule fetch_accession:
         """
 
 rule sra_to_fastq:
-    input: "output/{accession}/{accession}.sra"
-    output: expand("output/{{accession}}_{read}.fastq", read=[1,2])
+    input: "{dataset}/{accession}/{accession}.sra"
+    output: expand("{{dataset}}/{{accession}}_{read}.fastq", read=[1,2])
     threads: 2
     resources:
         time_min = 180,
         mem_mb = 16000
-    container: "docker://ncbi/sra-tools:3.0.0"
+    container: "docker://befh/sra-tools:3.0.0"
     shell:
         """
         fasterq-dump {input} -e 20
