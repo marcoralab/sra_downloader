@@ -5,6 +5,10 @@ Author: Tulsi Patel
 **PURPOSE:**
 Download files from Sequence Read Archive (SRA) using list of accession numbers and extract to fastq/other depending on format.   
 
+## CONFIG PARAMS
+SRALIST = "input/SraAccList.txt"
+DATASET = "dataset_20250212"
+
 ## RULES
 ### FETCH_ACCESSION
 Get .sra file from SRA archive using file containing a list of accession numbers in the format below. Uses NCBI docker container for sra-tools.
