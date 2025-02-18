@@ -11,7 +11,8 @@ Edit these at the top of the Snakefile to specific file containing accession num
 SRALIST = "SraAccList.txt"
 DATASET = "dataset_20250212"
 
-SRALIST should be in the format downloaded exactly from GEO/SRA, as shown below:
+SRALIST should be in the format downloaded exactly from GEO/SRA, as shown below:    
+
 SRR8270313    
 SRR8270314    
 SRR8270315
