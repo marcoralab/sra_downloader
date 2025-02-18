@@ -1,8 +1,8 @@
 import os
 import glob
 
-SRALIST = "input/SraAccList.txt"
-DATASET = "test_20250212"
+SRALIST = "SraAccList.txt"
+DATASET = "dataset_20250212"
 
 with open(SRALIST, "r") as srafile:
     ACCESSION = [x.strip() for x in srafile]
@@ -51,14 +51,3 @@ rule sra_to_fastq:
         fasterq-dump {input} -e 20 -O {params.output_folder}
         """
 
-# rule move_files:
-#     input: "{accession}_{read}.fastq"
-#     output: "{dataset}/{accession}_{read}.fastq"
-#     threads: 1
-#     resources:
-#         time_min = 30,
-#         mem_mb = 2000
-#     shell:
-#         """
-#         mv {input} {output}
-#         """
