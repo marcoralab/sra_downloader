@@ -7,7 +7,7 @@ Download files from Sequence Read Archive (SRA) using list of accession numbers 
 
 ## CONFIG PARAMS
 
-SRALIST = "input/SraAccList.txt"
+SRALIST = "SraAccList.txt"
 DATASET = "dataset_20250212"
 
 ## RULES
