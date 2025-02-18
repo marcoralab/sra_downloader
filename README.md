@@ -8,7 +8,7 @@ Download files from GEO Sequence Read Archive (SRA) using list of accession numb
 ### CONFIG PARAMS
 Edit these at the top of the Snakefile to specific file containing accession numbers and an output folder with dataset name and date (can move files after).
 
-SRALIST = "SraAccList.txt"
+SRALIST = "SraAccList.txt"    
 DATASET = "dataset_20250212"
 
 SRALIST should be in the format downloaded exactly from GEO/SRA, as shown below:    
